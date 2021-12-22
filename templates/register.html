@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block nav %}
+<div class="container">
+    <div class="box shadow p-3 mb-5 bg-body rounded">
+        <form class="row g-3 needs-validation" novalidate action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="save" type="submit" value="Register">
+
+            {% if messages %}
+            {% for msg in messages %}
+            <div class="alert alert-success" role="alert">
+                {{msg}}
+            </div>
+            {% endfor %}
+            {% endif %}
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+</body>
+</html>

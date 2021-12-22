@@ -1,0 +1,16 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block nav %}
+<div class="container">
+    {% if user %}
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        {{form_photo.as_p}}
+        <input type="submit" value="Сохранить">
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

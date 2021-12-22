@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block nav %}
+<div class="container">
+    <div class="row">
+        <div class="col-9 row">
+            <div class="col-6">
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{{detail.image}}" width="100%" height="50%" alt="next">
+                        </div>
+                        {%for p in detail.photo_set.all %}
+                        <div class="carousel-item">
+                            <img src="{{p.image.url}}" width="100%" height="50%">
+                        </div>
+                        {%endfor%}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Предыдущий</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Следующий</span>
+                    </button>
+                </div>
+            </div>
+            <div class="col-6">
+
+                <p><a href="{% url 'report' my_id=detail.id%}"> add очтчет </a></p>
+
+                <div>{{detail.title}}</div>
+                <div>{{detail.description}}</div>
+                <div>{{detail.city}} {{detail.region}} {{detail.street}}</div>
+                <div>{{detail.price}} {{detail.meter}}</div>
+                <div>{{detail.how}} {{detail.meters}}</div>
+                <div>{{detail.class_home}}</div>
+                <div>{{detail.floor}}</div>
+                <div>{{detail.height}}</div>
+                <div>{{detail.materials}}</div>
+                <div>{{detail.company}}</div>
+                <div>{{detail.status}}</div>
+                <div>{{detail.visit}}</div>
+                <div id="map" width="100%" height="100px"></div>
+            </div>
+
+        </div>
+
+        <div class="col-3">
+            {% for v in video %}
+            <video width="280" height="300" controls autoplay muted>
+                <source src="{{v.vid.url}}" type="video/mp4">
+            </video>
+            {%endfor%}
+        </div>
+    </div>
+<script>
+    function initMap() {
+    const uluru = { lat: {{detail.longitude}}, lng: {{detail.longitude}} };
+    const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 4,
+    center: uluru,
+});
+const marker = new google.maps.Marker({
+  position: uluru,
+  map: map,
+});
+  }
+</script>
+<script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADPsU2CWSf5aunXYE-QniWCVgmtPc6VZk&callback=initMap">
+</script>
+    {% endblock %}

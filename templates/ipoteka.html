@@ -1,0 +1,24 @@
+{% extends 'base.html'  %}
+{% load static %}
+{% block nav %}
+<div class="container">
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="number" placeholder="общая сумма" name="summa">
+        <input type="number" placeholder="сумма начального взноса" name="payment">
+        <input type="number" placeholder="год" name="year">
+        <input type="percent" placeholder="percent" name="percent">
+        <input type="submit" value="Calculates">
+        {% if messages %}
+        {% for msg in messages %}
+        <div class="alert alert-success" role="alert">
+            {{msg}}
+        </div>
+        {% endfor %}
+        {% endif %}
+        <p>за месяц {{ money }} - переплата {{ over }}</p>
+    </form>
+
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block nav %}
+<div class="container">
+    {% if user%}
+    <p>{{user.status}}</p>
+    <p>{{user.email}}</p>
+    <p>{{user.username}}</p>
+    {% else %}
+    <p>вы не заригистрированны, для регистрации нажимете <a href="{% url 'register' %}">сюда</a> или на иконку сверху </p>
+    {% endif %}
+</div>
+{% endblock %}

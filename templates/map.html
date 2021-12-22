@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block nav %}
+<div class="container">
+    <h4>AIzaSyADPsU2CWSf5aunXYE-QniWCVgmtPc6VZk</h4>
+
+    <div id="map" width="400" height="400"></div>
+</div>
+
+<script src="{% static 'js/maps_js.js'%}"></script>
+<script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADPsU2CWSf5aunXYE-QniWCVgmtPc6VZk&callback=initMap">
+</script>
+{% endblock %}
+
